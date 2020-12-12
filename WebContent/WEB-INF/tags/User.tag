@@ -10,14 +10,15 @@
 		<form method="post" action="./user">
 		<c:choose>
 		<c:when test="${ user.isAuth() }">
-			<p>ようこそ、${ user.getUserId() }さん</p>
+			<p>ユーザー：${ user.getUserId() }</p>
 			<input type="submit" class="btn btn-default" name="logout" value="ログアウト" />
+			<a class="btn btn-default" href="./cart">カート × 0</a>
 		</c:when>
 		<c:otherwise>
 			<dl>
-				<dt><label for="userId" class="control-label">ユーザーID：</label></dt>
+				<dt><label for="userId" class="control-label">ユーザーID</label></dt>
 				<dd><input type="text" class="form-control input-sm" name="userId" value="" /></dd>
-				<dt><label for="userPass" class="control-label">パスワード：</label></dt>
+				<dt><label for="userPass" class="control-label">パスワード</label></dt>
 				<dd><input type="password" class="form-control input-sm" name="userPass" value="" /></dd>
 			</dl>
 			<input type="submit" class="btn btn-default" name="login" value="ログイン" />

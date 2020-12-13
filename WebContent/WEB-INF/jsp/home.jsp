@@ -24,7 +24,7 @@
 	<header class="well">
 		<!-- メインロゴ（クリックしたときに、トップページへ飛ぶ設定） -->
 		<h1>
-			<a href="./">MyShop</a>
+			<a href="./"><i>MyShop</i></a>
 		</h1>
 		
 		<!-- 検索欄 -->
@@ -51,7 +51,9 @@
 				for (int i = 0; i < 5; i++){
 				%>
 					<li>
-						<a href="${ pageContext.request.contextPath }/blog"><% out.println("タグ" + i); %></a>
+						<a href="${ pageContext.request.contextPath }/search?tag=<% out.println(i); %>&page=1">
+							<% out.println("タグ" + i); %>
+						</a>
 					</li>
 				<%
 				}

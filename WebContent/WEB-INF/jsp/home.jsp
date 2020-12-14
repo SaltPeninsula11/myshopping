@@ -29,7 +29,11 @@
 		
 		<!-- 検索欄 -->
 		<form action="search">
+			<!-- キーワードを送信 -->
 			<input type="search" name="search" required />
+			<!-- ページ数を送信（1に設定） -->
+			<input type="hidden" name="page" value="1">
+			<!-- 検索ボタン -->
 			<input type="submit" value="検索" />
 		</form>
 	</header>

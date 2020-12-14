@@ -14,6 +14,8 @@
 	<div class="panel-heading">
 		<h3 class="panel-title"><span class="glyphicon glyphicon-certificate"></span>&nbsp;NEW ITEMS</h3>
 	</div>
+	
+	<a href="product?productId=0">
 	<div class="panel-body">
 		<table border="1">
 			<tr>
@@ -32,6 +34,8 @@
 			</tr>
 		</table>
 	</div>
+	</a>
+	
 </div>
 <div class="panel panel-info">
 	<div class="panel-heading">

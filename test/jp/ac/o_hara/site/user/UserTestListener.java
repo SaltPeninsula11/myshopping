@@ -42,9 +42,11 @@ public class UserTestListener implements ServletContextListener {
 				System.out.println("TestUserDB is NOT READY.");
 			}
 		}
-		dao.create(new UserBean("管理者", "admin", "adminpass"));
-		dao.create(new UserBean("hogehoge", "hoge", "hogepass"));
-		dao.create(new UserBean("piyopiyo", "piyo", "piyopass"));
+		if (dao == null) {
+			dao.create(new UserBean("管理者", "admin", "adminpass"));
+			dao.create(new UserBean("hogehoge", "hoge", "hogepass"));
+			dao.create(new UserBean("piyopiyo", "piyo", "piyopass"));
+		}
 
 		System.out.println("SystemStart..");
 	}

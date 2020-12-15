@@ -10,9 +10,9 @@
 		<form method="post" action="./user">
 		<c:choose>
 		<c:when test="${ user.isAuth() }">
-			<p>ユーザー：${ user.getUserId() }</p>
+			<p>ユーザー：${ user.getRealName() }</p>
 			<input type="submit" class="btn btn-default" name="logout" value="ログアウト" />
-			<a class="btn btn-default" href="./cart">カート × 0</a>
+			<a class="btn btn-default" href="./user?userId=${ user.getUserId() }">カート × 0</a>
 		</c:when>
 		<c:otherwise>
 			<dl>

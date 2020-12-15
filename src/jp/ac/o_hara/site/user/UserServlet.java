@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import jp.ac.o_hara.site.ContentBean;
+
 /**
  * Servlet implementation class UserServlet
  */
@@ -24,7 +26,15 @@ public class UserServlet extends HttpServlet {
 		if (req.getParameter("register") != null) { // 新規登録画面へ遷移
 			req.getRequestDispatcher("WEB-INF/jsp/User/register.jsp").forward(req, resp);
 		} else {
-			req.getRequestDispatcher("WEB-INF/jsp/home.jsp").forward(req, resp);
+			//ユーザープロフィール
+			String userId = req.getParameter("userId");
+			req.setAttribute("userId", userId);
+			
+			ContentBean content = (ContentBean)req.getAttribute("content");
+			content.setContent("/WEB-INF/jsp/User/content.jsp");
+			req.setAttribute("content", content);
+			
+			this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);
 		}
 	}
 	

@@ -18,6 +18,22 @@ public class UserDAO extends SimpleDAO {
 		return dao;
 	}
 	
+	public int count() {
+		Connection db = this.createConnection();
+		//PreparedStatement ps = null;
+		int result = 0;
+		try (PreparedStatement ps = db.prepareStatement("SELECT COUNT(*) AS COUNT FROM usertbl")) {
+			//ps.executeUpdate();
+			ResultSet rs = ps.executeQuery();
+			result = rs.getInt("COUNT");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			this.closeConnection(db);
+		}
+		return result;
+	}
+	
 	public boolean create(UserBean user) {
 		Connection db = this.createConnection();
 		//PreparedStatement ps = null;

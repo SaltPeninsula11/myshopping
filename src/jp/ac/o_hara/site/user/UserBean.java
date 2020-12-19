@@ -55,5 +55,7 @@ public class UserBean implements Serializable {
 		this.userId = null;
 		this.pass = null;
 		this.realName = null;
+		this.money = 0;
+		this.point = 0;
 	}
 }

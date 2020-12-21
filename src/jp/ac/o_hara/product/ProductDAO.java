@@ -21,8 +21,8 @@ public class ProductDAO extends SimpleDAO {
 		Connection db = this.createConnection();
 		//PreparedStatement ps = null;
 		boolean result = false;
-		try (PreparedStatement ps = db.prepareStatement("INSERT INTO producttbl(productID, name, price, tag1, tag2, tag3, tag4, tag5) VALUES(?, ?, ?, ?, ?, ?, ?, ?)")) {
-			ps.setInt(1, product.getProductId());
+		try (PreparedStatement ps = db.prepareStatement("INSERT INTO producttbl(imgSrc, name, price, tag1, tag2, tag3, tag4, tag5) VALUES(?, ?, ?, ?, ?, ?, ?, ?)")) {
+			ps.setString(1, product.getImgSrc());
 			ps.setString(2, product.getName());
 			ps.setInt(3, product.getPrice());
 			ps.setString(4, product.getTag1());
@@ -32,6 +32,22 @@ public class ProductDAO extends SimpleDAO {
 			ps.setString(8, product.getTag5());
 			ps.executeUpdate();
 			result = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			this.closeConnection(db);
+		}
+		return result;
+	}
+	
+	public int count() {
+		Connection db = this.createConnection();
+		//PreparedStatement ps = null;
+		int result = 999;
+		try (PreparedStatement ps = db.prepareStatement("SELECT COUNT(*) AS COUNT FROM producttbl")) {
+			//ps.executeUpdate();
+			ResultSet rs = ps.executeQuery();
+			result = rs.getInt(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

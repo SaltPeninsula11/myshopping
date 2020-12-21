@@ -2,7 +2,7 @@ package jp.ac.o_hara.product;
 import java.io.Serializable;
 
 public class ProductBean implements Serializable {
-	private int productId = 0;
+	private String imgSrc = "";
 	private String name = "";
 	private int price = 0;
 	private String tag1 = "";
@@ -12,8 +12,8 @@ public class ProductBean implements Serializable {
 	private String tag5 = "";
 	
 	public ProductBean() {}
-	public ProductBean(int productId, String name, int price, String tag1, String tag2, String tag3, String tag4, String tag5) {
-		this.productId = productId;
+	public ProductBean(String imgSrc, String name, int price, String tag1, String tag2, String tag3, String tag4, String tag5) {
+		this.imgSrc = imgSrc;
 		this.name = name;
 		this.price = price;
 		this.tag1 = tag1;
@@ -23,9 +23,9 @@ public class ProductBean implements Serializable {
 		this.tag5 = tag5;
 	}
 	
-	//商品ID
-	public void setProductId(int productId) { this.productId = productId; }
-	public int getProductId() { return this.productId; }
+	//画像ソース
+	public void setImgSrc(String imgSrc) { this.imgSrc = imgSrc; }
+	public String getImgSrc() { return this.imgSrc; }
 	
 	//商品名
 	public void setName(String name) { this.name = name; }

@@ -46,7 +46,7 @@ public class ProductTestListener implements ServletContextListener {
 				System.out.println("TestUserDB is NOT READY.");
 			}
 		}
-		if (false) {
+		if (dao.count() <= 0) {
 			dao.create(new ProductBean("", "テスト", 100, "", "", "", "", ""));
 		}
 

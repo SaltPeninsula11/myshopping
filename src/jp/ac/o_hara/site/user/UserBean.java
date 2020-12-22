@@ -6,8 +6,8 @@ public class UserBean implements Serializable {
 	private String userId = null;
 	private String realName = null;
 	private String pass = null;
-	private int money = 0;
-	private int point = 0;
+	private int money;
+	private int point;
 	private boolean isAuth = false;
 	
 	public UserBean() {}
@@ -30,9 +30,11 @@ public class UserBean implements Serializable {
 	
 	public void setMoney(int money) { this.money = money; }
 	public int getMoney() { return this.money; }
+	public String getMoneyWithComma() { return String.format("%,d", this.money); }
 	
 	public void setPoint(int point) { this.point = point; }
 	public int getPoint() { return this.point; }
+	public String getPointWithComma() { return String.format("%,d", this.point); }
 	
 	public boolean isAuth() { return this.isAuth; }
 	
@@ -43,8 +45,8 @@ public class UserBean implements Serializable {
 			this.setRealName(realName);
 			this.setUserId(id);
 			this.setPass(pass);
-			this.setMoney(money);
-			this.setPoint(point);
+			this.setMoney(dao.getMoney(id));
+			this.setPoint(dao.getPoint(id));
 			this.isAuth = true;
 		}
 		return this.isAuth();

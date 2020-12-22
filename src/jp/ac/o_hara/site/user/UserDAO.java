@@ -88,5 +88,55 @@ public class UserDAO extends SimpleDAO {
 
 		return result;
 	}
+	public int getMoney(String userId) {
+		Connection db = this.createConnection();
+		PreparedStatement ps = null;
+		int result = 0;
+		try {
+			ps = db.prepareStatement("SELECT money FROM usertbl WHERE userID=?");
+			ps.setString(1, userId);
+			ResultSet rst = ps.executeQuery();
+			if (rst.next()) {
+				result = rst.getInt("money");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+			}
+			this.closeConnection(db);
+		}
+
+		return result;
+	}
+	public int getPoint(String userId) {
+		Connection db = this.createConnection();
+		PreparedStatement ps = null;
+		int result = 0;
+		try {
+			ps = db.prepareStatement("SELECT point FROM usertbl WHERE userID=?");
+			ps.setString(1, userId);
+			ResultSet rst = ps.executeQuery();
+			if (rst.next()) {
+				result = rst.getInt("point");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+			}
+			this.closeConnection(db);
+		}
+
+		return result;
+	}
 
 }

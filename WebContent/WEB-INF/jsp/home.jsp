@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="module" tagdir="/WEB-INF/tags" %>
 <jsp:useBean id="content" class="jp.ac.o_hara.site.ContentBean" scope="request" />
+<jsp:useBean id="product" class="jp.ac.o_hara.product.ProductTestListener" scope="request" />
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -72,6 +73,7 @@
 			
 		</div>
 	</div>
+	${ product.getCount() }
 	<footer class="well">
 		Copyright &copy;塩﨑 航太
 	</footer>

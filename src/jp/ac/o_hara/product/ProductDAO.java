@@ -43,7 +43,7 @@ public class ProductDAO extends SimpleDAO {
 	public int count() {
 		Connection db = this.createConnection();
 		//PreparedStatement ps = null;
-		int result = 999;
+		int result = 0;
 		try (PreparedStatement ps = db.prepareStatement("SELECT COUNT(*) AS COUNT FROM producttbl")) {
 			//ps.executeUpdate();
 			ResultSet rs = ps.executeQuery();
@@ -110,6 +110,38 @@ public class ProductDAO extends SimpleDAO {
 			this.closeConnection(db);
 		}
 
+		return result;
+	}
+	
+	public String[] getInformation(int id) {
+		Connection db = this.createConnection();
+		PreparedStatement ps = null;
+		String[] result = new String[8];
+		try {
+			ps = db.prepareStatement("SELECT * FROM producttbl WHERE id = ?");
+			ps.setInt(1, id);
+			ResultSet rst = ps.executeQuery();
+			if (rst.next()) {
+				result[0] = rst.getString("imgSrc");
+				result[1] = rst.getString("name");
+				result[2] = rst.getString("price");
+				result[3] = rst.getString("tag1");
+				result[4] = rst.getString("tag2");
+				result[5] = rst.getString("tag3");
+				result[6] = rst.getString("tag4");
+				result[7] = rst.getString("tag5");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+			}
+			this.closeConnection(db);
+		}
 		return result;
 	}
 }

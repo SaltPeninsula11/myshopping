@@ -21,7 +21,7 @@ public class UserDAO extends SimpleDAO {
 	public int count() {
 		Connection db = this.createConnection();
 		//PreparedStatement ps = null;
-		int result = 999;
+		int result = 0;
 		try (PreparedStatement ps = db.prepareStatement("SELECT COUNT(*) AS COUNT FROM usertbl")) {
 			//ps.executeUpdate();
 			ResultSet rs = ps.executeQuery();

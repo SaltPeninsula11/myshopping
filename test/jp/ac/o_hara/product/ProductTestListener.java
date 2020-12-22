@@ -52,5 +52,9 @@ public class ProductTestListener implements ServletContextListener {
 
 		System.out.println("SystemStart..");
 	}
+	
+	public int getCount() {
+		return dao.count();
+	}
 
 }

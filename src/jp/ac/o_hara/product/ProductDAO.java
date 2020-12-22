@@ -47,7 +47,9 @@ public class ProductDAO extends SimpleDAO {
 		try (PreparedStatement ps = db.prepareStatement("SELECT COUNT(*) AS COUNT FROM producttbl")) {
 			//ps.executeUpdate();
 			ResultSet rs = ps.executeQuery();
-			result = rs.getInt(1);
+			while (rs.next()) {
+				result = rs.getInt("COUNT");
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

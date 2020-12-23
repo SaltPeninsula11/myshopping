@@ -1,9 +1,9 @@
 package jp.ac.o_hara.product;
 import java.io.Serializable;
 
+import jp.ac.o_hara.site.user.UserDAO;
+
 public class ProductBean implements Serializable {
-	private int count = 0;
-	
 	private String imgSrc = "";
 	private String name = "";
 	private int price = 0;
@@ -23,8 +23,6 @@ public class ProductBean implements Serializable {
 		this.tag3 = tag3;
 		this.tag4 = tag4;
 		this.tag5 = tag5;
-		
-		this.count += 1;
 	}
 	
 	//画像ソース
@@ -56,6 +54,23 @@ public class ProductBean implements Serializable {
 	public String getTag5() { return this.tag5; }
 	
 	//件数
-	public int getCount() { return this.count; }
-
+	public int getCount() {
+		ProductDAO dao = ProductDAO.getInstance();
+		return dao.count();
+	}
+	//No.〇〇〇の情報を取得
+	public String[] getInformation(int id) {
+		ProductDAO dao = ProductDAO.getInstance();
+		return dao.getInformation(id, 0, "", "");
+	}
+	//No.〇〇〇で検索キーワードが入っている情報を取得
+	public String[] search(int id, String keyword) {
+		ProductDAO dao = ProductDAO.getInstance();
+		return dao.getInformation(id, 1, keyword, "");
+	}
+	//No.〇〇〇で検索タグが入っている情報を取得
+	public String[] searchTag(int id, String tag) {
+		ProductDAO dao = ProductDAO.getInstance();
+		return dao.getInformation(id, 2, "", tag);
+	}
 }

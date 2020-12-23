@@ -47,7 +47,7 @@ public class ProductTestListener implements ServletContextListener {
 			}
 		}
 		if (dao.count() <= 0) {
-			dao.create(new ProductBean("", "テスト", 100, "", "", "", "", ""));
+			dao.create(new ProductBean("", "テスト", 100, "テスト", "", "", "", ""));
 		}
 
 		System.out.println("SystemStart..");

@@ -1,17 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:useBean id="product" class="jp.ac.o_hara.product.ProductBean" scope="request" />
-<!-- 
-<div class="panel panel-info">
-	<div class="panel-heading">
-		<h3 class="panel-title"><span class="glyphicon glyphicon-calendar"></span>&nbsp;予定一覧</h3>
-	</div>
-	<div class="panel-body">
-		<p>コンテンツの中身</p>
-	</div>
-	<div class="panel-footer">ボタン類</div>
-</div>
--->
-<%!
+<%
 int allProducts = 0;
 String[] information = new String[8];
 %>
@@ -21,11 +10,11 @@ String[] information = new String[8];
 	</div>
 	
 	<div class="panel-body">
+		<% allProducts = product.getCount(); %>
 		<table border="2">
-		<% for (int i = 0; i < 50; i++){ 
-			if (i % 6 == 0){ %>
-			<tr>
-		<% } %>
+		<% for (int i = 0; i < 54; i++){ %>
+		<% information = product.getInformation(i); %>
+		<tr>
 			<td>
 				<a href="product?productId=<% out.println(i); %>">
 					<table border="1">
@@ -38,18 +27,16 @@ String[] information = new String[8];
 							</td>
 						</tr>
 						<tr>
-							<td>商品名</td>
+							<td><%= information[1] %></td>
 						</tr>
 						<tr>
-							<td>価格</td>
+							<td><%= information[2] %>円</td>
 						</tr>
 					</table>
 				</a>
 			</td>
-			<% if (i % 6 == 5){ %>
-			<tr>
-		<% } 
-		 } %>
+		<tr>
+		<% } %>
 		</table>
 	</div>
 	

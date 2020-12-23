@@ -114,6 +114,8 @@ public class ProductDAO extends SimpleDAO {
 	}
 	
 	public String[] getInformation(int id, int searchNo, String keyword, String tag) {
+		id += 1;
+		
 		Connection db = this.createConnection();
 		PreparedStatement ps = null;
 		String[] result = new String[8];
@@ -121,16 +123,16 @@ public class ProductDAO extends SimpleDAO {
 			switch (searchNo) {
 				case 0:
 					//通常抽出
-					ps = db.prepareStatement("SELECT * FROM producttbl WHERE id = ?");
+					ps = db.prepareStatement("SELECT * FROM producttbl WHERE productId = ?");
 					break;
 				case 1:
 					//検索キーワードで抽出
-					ps = db.prepareStatement("SELECT * FROM producttbl WHERE id = ? AND name LIKE '%?%'");
+					ps = db.prepareStatement("SELECT * FROM producttbl WHERE productId = ? AND name LIKE '%?%'");
 					ps.setString(2, keyword);
 					break;
 				case 2:
 					//タグで抽出
-					ps = db.prepareStatement("SELECT * FROM producttbl WHERE id = ? AND (tag1 = ? OR tag2 = ? OR tag3 = ? OR tag4 = ? OR tag5 = ?)");
+					ps = db.prepareStatement("SELECT * FROM producttbl WHERE productId = ? AND (tag1 = ? OR tag2 = ? OR tag3 = ? OR tag4 = ? OR tag5 = ?)");
 					ps.setString(2, tag);
 					ps.setString(3, tag);
 					ps.setString(4, tag);
@@ -143,7 +145,7 @@ public class ProductDAO extends SimpleDAO {
 			if (rst.next()) {
 				result[0] = rst.getString("imgSrc");
 				result[1] = rst.getString("name");
-				result[2] = rst.getString("price");
+				result[2] = String.format("%,d", rst.getInt("price"));
 				result[3] = rst.getString("tag1");
 				result[4] = rst.getString("tag2");
 				result[5] = rst.getString("tag3");

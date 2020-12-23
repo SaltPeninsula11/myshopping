@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Bootstrap Sample</title>
+	<title>MyShop</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/jquery-ui.min.css">
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>

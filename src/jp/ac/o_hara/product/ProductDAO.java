@@ -113,12 +113,31 @@ public class ProductDAO extends SimpleDAO {
 		return result;
 	}
 	
-	public String[] getInformation(int id) {
+	public String[] getInformation(int id, int searchNo, String keyword, String tag) {
 		Connection db = this.createConnection();
 		PreparedStatement ps = null;
 		String[] result = new String[8];
 		try {
-			ps = db.prepareStatement("SELECT * FROM producttbl WHERE id = ?");
+			switch (searchNo) {
+				case 0:
+					//通常抽出
+					ps = db.prepareStatement("SELECT * FROM producttbl WHERE id = ?");
+					break;
+				case 1:
+					//検索キーワードで抽出
+					ps = db.prepareStatement("SELECT * FROM producttbl WHERE id = ? AND name LIKE '%?%'");
+					ps.setString(2, keyword);
+					break;
+				case 2:
+					//タグで抽出
+					ps = db.prepareStatement("SELECT * FROM producttbl WHERE id = ? AND (tag1 = ? OR tag2 = ? OR tag3 = ? OR tag4 = ? OR tag5 = ?)");
+					ps.setString(2, tag);
+					ps.setString(3, tag);
+					ps.setString(4, tag);
+					ps.setString(5, tag);
+					ps.setString(6, tag);
+					break;
+			}
 			ps.setInt(1, id);
 			ResultSet rst = ps.executeQuery();
 			if (rst.next()) {

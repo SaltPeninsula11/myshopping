@@ -2,6 +2,8 @@ package jp.ac.o_hara.product;
 import java.io.Serializable;
 
 public class ProductBean implements Serializable {
+	private int count = 0;
+	
 	private String imgSrc = "";
 	private String name = "";
 	private int price = 0;
@@ -21,6 +23,8 @@ public class ProductBean implements Serializable {
 		this.tag3 = tag3;
 		this.tag4 = tag4;
 		this.tag5 = tag5;
+		
+		this.count += 1;
 	}
 	
 	//画像ソース
@@ -50,5 +54,8 @@ public class ProductBean implements Serializable {
 	//タグE
 	public void setTag5(String tag5) { this.tag5 = tag5; }
 	public String getTag5() { return this.tag5; }
+	
+	//件数
+	public int getCount() { return this.count; }
 
 }

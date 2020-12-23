@@ -55,9 +55,10 @@
 				for (int i = 0; i < 5; i++){
 				%>
 					<li>
-						<a href="${ pageContext.request.contextPath }/search?tag=<% out.println(i); %>&page=1">
-							<% out.println("タグ" + i); %>
-						</a>
+						<form action="search">
+							<input type="submit" name="tag" value="<%= ("タグ" + i) %>">
+							<input type="hidden" name="page" value="1">
+						</form>
 					</li>
 				<%
 				}

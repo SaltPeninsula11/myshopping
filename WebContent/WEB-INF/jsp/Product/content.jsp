@@ -3,7 +3,7 @@
 <%String[] information = new String[8];%>
 No. ${ productId }
 
-<% information = product.getInformation(0); %>
+<% information = product.getInformation(((Integer)(request.getAttribute("productId"))).intValue()); %>
 
 <table border="1">
 	<tr>
@@ -11,24 +11,25 @@ No. ${ productId }
 			アイコン
 		</td>
 		<td>
-			<h3>
-				<table>
-				<tr>
-				<% for (int i = 3; i <= 7; i++){ %>
-					<% if (information[i] != null){ %>
-					<td>
-						<%= information[i] %>
-					</td>
-					<% } %>
+			<table border="1">
+			<tr>
+			<% for (int i = 3; i <= 7; i++){ %>
+				<% if (information[i] != ""){ %>
+				<td>
+					<form action="search">
+						<input type="submit" name="tag" value="<%= information[i] %>">
+						<input type="hidden" name="page" value="1">
+					</form>
+				</td>
 				<% } %>
-				</tr>
-				</table>
-			</h3>
+			<% } %>
+			</tr>
+			</table>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<h3><%= information[1] %></h3>
+			<h2><%= information[1] %></h2>
 		</td>
 	</tr>
 	<tr>

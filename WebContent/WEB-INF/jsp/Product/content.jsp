@@ -8,11 +8,14 @@ No. ${ productId }
 <table border="1">
 	<tr>
 		<td rowspan="4">
-			アイコン
+			<!-- アイコン -->
+			<img src="${pageContext.request.contextPath}/images/<%= information[0] %>.png" 
+			width="125" height="165" alt="<%= information[1] %>">
 		</td>
 		<td>
 			<table border="1">
 			<tr>
+			<!-- タグ -->
 			<% for (int i = 3; i <= 7; i++){ %>
 				<% if (information[i] != ""){ %>
 				<td>
@@ -29,11 +32,13 @@ No. ${ productId }
 	</tr>
 	<tr>
 		<td>
+			<!-- 商品名 -->
 			<h2><%= information[1] %></h2>
 		</td>
 	</tr>
 	<tr>
 		<td>
+			<!-- 価格 × 個数 -->
 			<h4>
 			<%= information[2] %>円 × 
 			<select name="count">

@@ -20,7 +20,8 @@ String[] information = new String[8];
 					<table border="1">
 						<tr>
 							<td rowspan="3">
-								アイコン
+								<img src="${pageContext.request.contextPath}/images/<%= information[0] %>.png" 
+								width="70" height="92" alt="<%= information[1] %>">
 							</td>
 							<td>
 								タグ名

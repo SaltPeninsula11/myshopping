@@ -11,11 +11,14 @@ String[] information = new String[8];
 	
 	<div class="panel-body">
 		<% allProducts = product.getCount(); %>
-		<table border="2">
-		<% for (int i = 0; i < 54; i++){ %>
+		<% out.println(allProducts); %>
+		<div id="product_list">
+		<% for (int i = 0; i < 25; i++){ %>
 		<% information = product.getInformation(i); %>
-		<tr>
-			<td>
+		<% if (information[i] == null){
+			break;
+		} %>
+			<div class="product_item">
 				<a href="product?productId=<% out.println(i); %>">
 					<table border="1">
 						<tr>
@@ -23,25 +26,24 @@ String[] information = new String[8];
 								<img src="${pageContext.request.contextPath}/images/<%= information[0] %>.png" 
 								width="70" height="92" alt="<%= information[1] %>">
 							</td>
-							<td>
+							<td class="p-item">
 								タグ名
 							</td>
 						</tr>
 						<tr>
-							<td><%= information[1] %></td>
+							<td class="p-item"><%= information[1] %></td>
 						</tr>
 						<tr>
-							<td><%= information[2] %>円</td>
+							<td class="p-item"><%= information[2] %>円</td>
 						</tr>
 					</table>
 				</a>
-			</td>
-		<tr>
+			</div>
 		<% } %>
-		</table>
+		</div>
 	</div>
-	
 </div>
+
 <div class="panel panel-info">
 	<div class="panel-heading">
 		<h3 class="panel-title"><span class="glyphicon glyphicon-arrow-up"></span>&nbsp;PICK UPS</h3>

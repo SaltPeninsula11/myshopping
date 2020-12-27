@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+#product_list {
+	display: flex;
+	flex-wrap: wrap;
+	/*align-items:stretch;*/
+}
+
+.product_item {
+	width: 20%;
+}
+
+.product_item .p-item {
+	width: 80px;
+}

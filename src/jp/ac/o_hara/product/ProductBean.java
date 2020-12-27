@@ -61,7 +61,17 @@ public class ProductBean implements Serializable {
 	//No.〇〇〇の情報を取得
 	public String[] getInformation(int id) {
 		ProductDAO dao = ProductDAO.getInstance();
-		return dao.getInformation(id, 0, "", "");
+		String[] info = dao.getInformation(id, 0, "", "");
+		this.setImgSrc(info[0]);
+		this.setName(info[1]);
+		this.setPrice(Integer.parseInt(info[2]));
+		info[2] = String.format("%,d", this.getPrice());
+		this.setTag1(info[3]);
+		this.setTag2(info[4]);
+		this.setTag3(info[5]);
+		this.setTag4(info[6]);
+		this.setTag5(info[7]);
+		return info;
 	}
 	//No.〇〇〇で検索キーワードが入っている情報を取得
 	public String[] search(int id, String keyword) {

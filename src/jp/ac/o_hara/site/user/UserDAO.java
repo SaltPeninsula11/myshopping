@@ -138,5 +138,37 @@ public class UserDAO extends SimpleDAO {
 
 		return result;
 	}
+	
+	public int[] payMoney(int userId, int paid) {
+		Connection db = this.createConnection();
+		PreparedStatement ps = null;
+		int[] result = new int[2];
+		try {
+			ps = db.prepareStatement("UPDATE usertbl "
+					+ "SET money = money - ?, "
+					+ "point = point + FLOOR(? / 100)"
+					+ "WHERE userID=?");
+			ps.setInt(1, paid);
+			ps.setInt(2, paid);
+			ps.setInt(3, userId);
+			ResultSet rst = ps.executeQuery();
+			if (rst.next()) {
+				result[0] = rst.getInt("money");
+				result[1] = rst.getInt("point");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+			}
+			this.closeConnection(db);
+		}
+
+		return result;
+	}
 
 }

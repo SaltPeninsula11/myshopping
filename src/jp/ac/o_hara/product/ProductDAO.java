@@ -145,7 +145,7 @@ public class ProductDAO extends SimpleDAO {
 			if (rst.next()) {
 				result[0] = rst.getString("imgSrc");
 				result[1] = rst.getString("name");
-				result[2] = String.format("%,d", rst.getInt("price"));
+				result[2] = String.valueOf(rst.getInt("price"));
 				result[3] = rst.getString("tag1");
 				result[4] = rst.getString("tag2");
 				result[5] = rst.getString("tag3");
@@ -163,6 +163,12 @@ public class ProductDAO extends SimpleDAO {
 			}
 			this.closeConnection(db);
 		}
+		
+		//価格の整理
+		if (result[2] == null) {
+			result[2] = "0";
+		}
+		
 		return result;
 	}
 }

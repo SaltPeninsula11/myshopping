@@ -1,7 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<jsp:useBean id="product" class="jp.ac.o_hara.product.ProductBean" scope="request" />
 
+<%
+String[] information = new String[8];
+Boolean searchSwitch = (request.getAttribute("search") == null);
+int count = product.getCount();
+int searchCount = 0;
+int pageCount = Integer.parseInt(request.getAttribute("page").toString());
+%>
 <!-- 「(キーワード)」の検索結果 -->
-<% if (request.getAttribute("search") == null){ %>
+<% if (searchSwitch){ %>
 	<!-- タグで絞り込み -->
 	<!-- 
 	SELECT * 
@@ -13,7 +21,7 @@
 	OR タグE = タグ 
 	-->
 	
-	タグ「${ tag }」で検索　0件
+	タグ「${ tag }」で絞り込み
 <% } else { %>
 	<!-- 通常検索 -->
 	<!-- 
@@ -22,5 +30,70 @@
 	WHERE 商品名 LIKE "%キーワード%" 
 	-->
 	
-	「${ search }」の検索結果 0件
+	「${ search }」の検索結果
 <% } %>
+
+<div class="panel-body">
+	<div id="product_list">
+	<% for (int i = (30 * (pageCount - 1)); i < (30 * pageCount); i++){ %>
+		<%
+		if (searchSwitch){
+			information = product.searchTag(i, request.getAttribute("tag").toString());
+		} else {
+			information = product.search(i, request.getAttribute("search").toString());
+		}
+		%>
+		<% if (information[0] != null){ %>
+			<div class="product_item">
+				<a href="product?productId=<% out.println(i); %>">
+					<table border="1">
+						<tr>
+							<td rowspan="3">
+								<img src="${pageContext.request.contextPath}/images/<%= information[0] %>.png" 
+								width="70" height="92" alt="<%= information[1] %>">
+							</td>
+							<td class="p-item">
+								タグ名
+							</td>
+						</tr>
+						<tr>
+							<td class="p-item"><%= information[1] %></td>
+						</tr>
+						<tr>
+							<td class="p-item"><%= information[2] %>円</td>
+						</tr>
+					</table>
+				</a>
+			</div>
+			<% searchCount += 1; %>
+		<% } %>
+	<% } %>
+	</div>
+</div>
+
+<div class="page-divide">
+	<table>
+		<tr>
+			<td>
+				<form action="search">
+					<% if (searchSwitch){ %>
+					<input type="hidden" name="tag" value="<%= request.getAttribute("tag") %>">
+					<% } else { %>
+					<input type="hidden" name="search" value="<%= request.getAttribute("search") %>">
+					<% } %>
+					<input type="submit" name="page" value="2">
+				</form>
+			</td>
+			<td>
+				<form action="search">
+					<% if (searchSwitch){ %>
+					<input type="hidden" name="tag" value="<%= request.getAttribute("tag") %>">
+					<% } else { %>
+					<input type="hidden" name="search" value="<%= request.getAttribute("search") %>">
+					<% } %>
+					<input type="submit" name="page" value="<%= (int)Math.ceil(searchCount / 30)%>">
+				</form>
+			</td>
+		</tr>
+	</table>
+</div>

@@ -71,9 +71,23 @@ int pageCount = Integer.parseInt(request.getAttribute("page").toString());
 	</div>
 </div>
 
+<!--
+if (ページ数 >= (n - 5) && 総ページ数 > 10){
+	[1]・・・[n-9][n-8][n-7][n-6][n-5][n-4][n-3][n-2][n-1][n]の形式にする
+} else if (ページ数 >= 6 && 総ページ数 > 10){
+	[1]・・・[2][3][4][5][6][7][8][9][10][11]の形式にする
+} else {
+	[1][2][3][4][5][6][7][8][9][10]の形式にする
+}
+ -->
+<%
+int lastPage = (int)Math.ceil(searchCount / 30);
+%>
+ 
 <div class="page-divide">
 	<table>
 		<tr>
+		<% for (int i = 1; i <= lastPage; i++) { %>
 			<td>
 				<form action="search">
 					<% if (searchSwitch){ %>
@@ -81,19 +95,10 @@ int pageCount = Integer.parseInt(request.getAttribute("page").toString());
 					<% } else { %>
 					<input type="hidden" name="search" value="<%= request.getAttribute("search") %>">
 					<% } %>
-					<input type="submit" name="page" value="2">
+					<input type="submit" name="page" value="<%= i %>">
 				</form>
 			</td>
-			<td>
-				<form action="search">
-					<% if (searchSwitch){ %>
-					<input type="hidden" name="tag" value="<%= request.getAttribute("tag") %>">
-					<% } else { %>
-					<input type="hidden" name="search" value="<%= request.getAttribute("search") %>">
-					<% } %>
-					<input type="submit" name="page" value="<%= (int)Math.ceil(searchCount / 30)%>">
-				</form>
-			</td>
+		<% } %>
 		</tr>
 	</table>
 </div>

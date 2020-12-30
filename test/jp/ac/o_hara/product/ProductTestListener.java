@@ -48,10 +48,14 @@ public class ProductTestListener implements ServletContextListener {
 		}
 		if (dao.count() <= 0) {
 			dao.create(new ProductBean("test", "テスト", 100, "テスト", "", "", "", ""));
-			dao.create(new ProductBean("cherry", "さくらんぼ", 700, "果物", "", "", "", ""));
 			dao.create(new ProductBean("strawberry", "苺", 120, "果物", "", "", "", ""));
 			dao.create(new ProductBean("orange", "みかん", 120, "果物", "", "", "", ""));
+			dao.create(new ProductBean("lemon", "レモン", 160, "果物", "", "", "", ""));
+			dao.create(new ProductBean("grapefruit", "グレープフルーツ", 200, "果物", "", "", "", ""));
 			dao.create(new ProductBean("apple", "りんご", 300, "果物", "", "", "", ""));
+			dao.create(new ProductBean("grapes", "ぶどう", 300, "果物", "", "", "", ""));
+			dao.create(new ProductBean("muscat", "マスカット", 350, "果物", "", "", "", ""));
+			dao.create(new ProductBean("cherry", "さくらんぼ", 700, "果物", "", "", "", ""));
 			dao.create(new ProductBean("melon", "メロン", 1000, "果物", "", "", "", ""));
 		}
 

@@ -15,7 +15,7 @@ String[] information = new String[8];
 		<div id="product_list">
 		<% for (int i = 0; i < 25; i++){ %>
 		<% information = product.getInformation(i); %>
-		<% if (information[i] == null){
+		<% if (information[0] == null){
 			break;
 		} %>
 			<div class="product_item">

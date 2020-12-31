@@ -1,9 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:useBean id="product" class="jp.ac.o_hara.product.ProductBean" scope="request" />
-<%String[] information = new String[8];%>
-No. ${ productId }
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="user" class="jp.ac.o_hara.site.user.UserBean" scope="session" />
 
-<% information = product.getInformation(((Integer)(request.getAttribute("productId"))).intValue()); %>
+<%
+String[] information = new String[8];
+information = product.getInformation(((Integer)(request.getAttribute("productId"))).intValue());
+
+Boolean userCheck;
+%>
+<c:choose>
+	<c:when test="${ user.isAuth() }">
+		<% userCheck = true; %>
+	</c:when>
+	<c:otherwise>
+		<% userCheck = false; %>
+	</c:otherwise>
+</c:choose>
 
 <table border="1">
 	<tr>
@@ -40,7 +53,11 @@ No. ${ productId }
 		<td>
 			<!-- 価格 × 個数 -->
 			<h4>
-			<%= information[2] %>円 × 
+			<%= information[2] %>円
+			<%
+			if (userCheck == true){
+			%>
+			 × 
 			<select name="count">
 			<option value="1">1</option>
 			<option value="2">2</option>
@@ -53,7 +70,17 @@ No. ${ productId }
 			<option value="9">9</option>
 			<option value="10">10</option>
 			</select>個
+			<% } %>
 			</h4>
 		</td>
 	</tr>
+	<%
+	if (userCheck == true){
+	%>
+	<tr>
+		<td>
+			<input type="button" value="カートに入れる">
+		</td>
+	</tr>
+	<% } %>
 </table>

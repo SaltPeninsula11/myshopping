@@ -53,11 +53,23 @@
 				<ul class="nav nav-pills nav-stacked">
 				<!-- タグをループで表示 -->
 				<%
-				for (int i = 0; i < 5; i++){
+				for (int i = 0; i < 3; i++){
 				%>
 					<li>
 						<form action="search">
-							<input type="submit" name="tag" value="<%= ("タグ" + i) %>">
+							<%
+							switch(i){
+								case 0: %>
+									<input type="submit" name="tag" value="野菜">
+									<% break;
+								case 1: %>
+									<input type="submit" name="tag" value="果物">
+									<% break;
+								case 2: %>
+									<input type="submit" name="tag" value="キノコ">
+									<% break;
+							}
+							%>
 							<input type="hidden" name="page" value="1">
 						</form>
 					</li>

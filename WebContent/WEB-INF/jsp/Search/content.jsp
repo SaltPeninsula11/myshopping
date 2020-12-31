@@ -48,16 +48,13 @@ int pageCount = Integer.parseInt(request.getAttribute("page").toString());
 				<a href="product?productId=<% out.println(i); %>">
 					<table border="1">
 						<tr>
-							<td rowspan="3">
+							<td rowspan="2">
 								<img src="${pageContext.request.contextPath}/images/<%= information[0] %>.png" 
 								width="70" height="92" alt="<%= information[1] %>">
 							</td>
 							<td class="p-item">
-								タグ名
+								<%= information[1] %>
 							</td>
-						</tr>
-						<tr>
-							<td class="p-item"><%= information[1] %></td>
 						</tr>
 						<tr>
 							<td class="p-item"><%= information[2] %>円</td>

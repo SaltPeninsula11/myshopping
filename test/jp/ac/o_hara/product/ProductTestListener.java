@@ -49,6 +49,25 @@ public class ProductTestListener implements ServletContextListener {
 		//野菜、果物、肉等
 		if (dao.count() <= 0) {
 			//dao.create(new ProductBean("test", "テスト", 100, "テスト", "", "", "", ""));
+			
+			//野菜
+			dao.create(new ProductBean("carrot", "人参", 71, "野菜", "秋", "冬", "", ""));
+			dao.create(new ProductBean("potato", "じゃがいも", 71, "野菜", "秋", "冬", "", ""));
+			dao.create(new ProductBean("onion", "玉ねぎ", 71, "野菜", "秋", "", "", ""));
+			dao.create(new ProductBean("corn", "とうもろこし", 103, "野菜", "夏", "", "", ""));
+			dao.create(new ProductBean("tomato", "トマト", 103, "野菜", "夏", "", "", ""));
+			dao.create(new ProductBean("greenpepper", "ピーマン", 103, "野菜", "夏", "", "", ""));
+			dao.create(new ProductBean("paprika", "パプリカ", 135, "野菜", "夏", "", "", ""));
+			dao.create(new ProductBean("asparagus", "アスパラガス", 167, "野菜", "夏", "", "", ""));
+			dao.create(new ProductBean("lettuce", "レタス", 167, "野菜", "", "", "", ""));
+			dao.create(new ProductBean("broccoli", "ブロッコリー", 167, "野菜", "冬", "", "", ""));
+			dao.create(new ProductBean("cabbage", "キャベツ", 186, "野菜", "春", "冬", "", ""));
+			dao.create(new ProductBean("spinach", "ほうれんそう", 189, "野菜", "冬", "", "", ""));
+			dao.create(new ProductBean("eringi", "エリンギ", 93, "野菜", "キノコ", "", "", ""));
+			dao.create(new ProductBean("shiitake", "椎茸", 103, "野菜", "キノコ", "春", "秋", ""));
+			dao.create(new ProductBean("matsutake", "松茸", 103, "野菜", "キノコ", "秋", "", ""));
+			
+			//果物
 			dao.create(new ProductBean("strawberry", "苺", 120, "果物", "冬", "春", "", ""));
 			dao.create(new ProductBean("kiwi", "キウイ", 120, "果物", "秋", "", "", ""));
 			dao.create(new ProductBean("orange", "みかん", 120, "果物", "冬", "春", "", ""));

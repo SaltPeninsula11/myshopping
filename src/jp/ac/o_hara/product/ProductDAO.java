@@ -127,8 +127,8 @@ public class ProductDAO extends SimpleDAO {
 					break;
 				case 1:
 					//検索キーワードで抽出
-					ps = db.prepareStatement("SELECT * FROM producttbl WHERE productId = ? AND name LIKE '%?%'");
-					ps.setString(2, keyword);
+					ps = db.prepareStatement("SELECT * FROM producttbl WHERE productId = ? AND name LIKE ?");
+					ps.setString(2, "%" + keyword + "%");
 					break;
 				case 2:
 					//タグで抽出

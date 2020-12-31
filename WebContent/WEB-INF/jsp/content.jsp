@@ -6,7 +6,7 @@ String[] information = new String[8];
 %>
 <div class="panel panel-info">
 	<div class="panel-heading">
-		<h3 class="panel-title"><span class="glyphicon glyphicon-certificate"></span>&nbsp;NEW ITEMS</h3>
+		<h3 class="panel-title"><span class="glyphicon glyphicon-arrow-up"></span>&nbsp;PICK UPS</h3>
 	</div>
 	
 	<div class="panel-body">
@@ -22,16 +22,13 @@ String[] information = new String[8];
 				<a href="product?productId=<% out.println(i); %>">
 					<table border="1">
 						<tr>
-							<td rowspan="3">
+							<td rowspan="2">
 								<img src="${pageContext.request.contextPath}/images/<%= information[0] %>.png" 
 								width="70" height="92" alt="<%= information[1] %>">
 							</td>
 							<td class="p-item">
-								タグ名
+								<%= information[1] %>
 							</td>
-						</tr>
-						<tr>
-							<td class="p-item"><%= information[1] %></td>
 						</tr>
 						<tr>
 							<td class="p-item"><%= information[2] %>円</td>
@@ -41,29 +38,5 @@ String[] information = new String[8];
 			</div>
 		<% } %>
 		</div>
-	</div>
-</div>
-
-<div class="panel panel-info">
-	<div class="panel-heading">
-		<h3 class="panel-title"><span class="glyphicon glyphicon-arrow-up"></span>&nbsp;PICK UPS</h3>
-	</div>
-	<div class="panel-body">
-		<table border="1">
-			<tr>
-				<td rowspan="3">
-					アイコン
-				</td>
-				<td>
-					タグ名
-				</td>
-			</tr>
-			<tr>
-				<td>商品名</td>
-			</tr>
-			<tr>
-				<td>価格</td>
-			</tr>
-		</table>
 	</div>
 </div>

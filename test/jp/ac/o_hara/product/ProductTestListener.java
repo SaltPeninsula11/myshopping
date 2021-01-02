@@ -24,7 +24,6 @@ public class ProductTestListener implements ServletContextListener {
 	 */
 	public void contextDestroyed(ServletContextEvent arg0) {
 		dao = null;
-		System.out.println("SystemStop..");
 	}
 
 	/**
@@ -41,9 +40,9 @@ public class ProductTestListener implements ServletContextListener {
 					+ " (productId IDENTITY, imgSrc VARCHAR(256), name VARCHAR(64), price INT,"
 					+ "tag1 VARCHAR(16), tag2 VARCHAR(16), tag3 VARCHAR(16), tag4 VARCHAR(16), tag5 VARCHAR(16),"
 					+ "PRIMARY KEY (productId))")) {
-				System.out.println("TestUserDB is READY.");
+				System.out.println("TestProductDB is READY.");
 			} else {
-				System.out.println("TestUserDB is NOT READY.");
+				System.out.println("TestProductDB is NOT READY.");
 			}
 		}
 		//野菜、果物、肉等

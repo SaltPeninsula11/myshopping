@@ -11,7 +11,6 @@ String[] information = new String[8];
 	
 	<div class="panel-body">
 		<% allProducts = product.getCount(); %>
-		<% out.println(allProducts); %>
 		<div id="product_list">
 		<% for (int i = 0; i < 25; i++){ %>
 		<% information = product.getInformation(i); %>

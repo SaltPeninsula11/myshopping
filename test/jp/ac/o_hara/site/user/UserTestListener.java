@@ -32,13 +32,13 @@ public class UserTestListener implements ServletContextListener {
 	 */
 	public void contextInitialized(ServletContextEvent arg0) {
 		if (System.getenv("DATABASE_URL") != null) {
-			dao.execSQL("CREATE TABLE IF NOT EXISTS usertbl"
+			dao.execSQL("CREATE TABLE IF NOT EXISTS USERTBL"
 					+ " (id SERIAL, realName VARCHAR(64), userID VARCHAR(64), passwd VARCHAR(64),"
 					+ "money INT, point INT, PRIMARY KEY (id))");
 		} else {
-			if (dao.execSQL("CREATE TABLE IF NOT EXISTS usertbl"
+			if (dao.execSQL("CREATE TABLE IF NOT EXISTS USERTBL"
 					+ " (id IDENTITY, realName VARCHAR(64), userID VARCHAR(64), passwd VARCHAR(64)"
-					+ "money INT, point INT)")) {
+					+ "money INT, point INT, PRIMARY KEY (id))")) {
 				System.out.println("TestUserDB is READY.");
 			} else {
 				System.out.println("TestUserDB is NOT READY.");

@@ -6,17 +6,7 @@
 <%
 String[] information = new String[8];
 information = product.getInformation(((Integer)(request.getAttribute("productId"))).intValue());
-
-Boolean userCheck;
 %>
-<c:choose>
-	<c:when test="${ user.isAuth() }">
-		<% userCheck = true; %>
-	</c:when>
-	<c:otherwise>
-		<% userCheck = false; %>
-	</c:otherwise>
-</c:choose>
 
 <table border="1">
 	<tr>
@@ -54,9 +44,6 @@ Boolean userCheck;
 			<!-- 価格 × 個数 -->
 			<h4>
 			<%= information[2] %>円
-			<%
-			if (userCheck == true){
-			%>
 			 × 
 			<select name="count">
 			<option value="1">1</option>
@@ -70,17 +57,12 @@ Boolean userCheck;
 			<option value="9">9</option>
 			<option value="10">10</option>
 			</select>個
-			<% } %>
 			</h4>
 		</td>
 	</tr>
-	<%
-	if (userCheck == true){
-	%>
 	<tr>
 		<td>
 			<input type="button" value="カートに入れる">
 		</td>
 	</tr>
-	<% } %>
 </table>

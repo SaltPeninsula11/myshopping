@@ -43,9 +43,6 @@
 			<!-- ユーザー欄 -->
 			<module:User />
 			
-			<!-- カレンダー欄（いらないかも） -->
-			<module:Calendar />
-			
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h3 class="panel-title"><span class="glyphicon glyphicon-tags"></span>&nbsp;タグで検索</h3>

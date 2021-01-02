@@ -41,7 +41,6 @@ public class UserDAO extends SimpleDAO {
 		//PreparedStatement ps = null;
 		boolean result = false;
 		try (PreparedStatement ps = db.prepareStatement("INSERT INTO usertbl(realName, userID, passwd, money, point) VALUES(?, ?, ?, ?, ?)")) {
-			//ps = db.prepareStatement("INSERT INTO user(realName, userID, passwd) VALUES(?, ?, ?)");
 			ps.setString(1, user.getRealName());
 			ps.setString(2, user.getUserId());
 			ps.setString(3, user.getPass());

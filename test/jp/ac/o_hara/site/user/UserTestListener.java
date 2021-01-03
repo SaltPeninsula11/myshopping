@@ -37,8 +37,8 @@ public class UserTestListener implements ServletContextListener {
 					+ "money INT, point INT, PRIMARY KEY (id))");
 		} else {
 			if (dao.execSQL("CREATE TABLE IF NOT EXISTS USERTBL"
-					+ " (id IDENTITY, realName VARCHAR(64), userID VARCHAR(64), passwd VARCHAR(64)"
-					+ "money INT, point INT, PRIMARY KEY (id))")) {
+					+ " (id IDENTITY, realName VARCHAR(64), userID VARCHAR(64), passwd VARCHAR(64),"
+					+ "money INT, point INT)")) {
 				System.out.println("TestUserDB is READY.");
 			} else {
 				System.out.println("TestUserDB is NOT READY.");

@@ -38,14 +38,13 @@ public class ProductTestListener implements ServletContextListener {
 		} else {
 			if (dao.execSQL("CREATE TABLE IF NOT EXISTS producttbl"
 					+ " (productId IDENTITY, imgSrc VARCHAR(256), name VARCHAR(64), price INT,"
-					+ "tag1 VARCHAR(16), tag2 VARCHAR(16), tag3 VARCHAR(16), tag4 VARCHAR(16), tag5 VARCHAR(16),"
-					+ "PRIMARY KEY (productId))")) {
+					+ "tag1 VARCHAR(16), tag2 VARCHAR(16), tag3 VARCHAR(16), tag4 VARCHAR(16), tag5 VARCHAR(16))")) {
 				System.out.println("TestProductDB is READY.");
 			} else {
 				System.out.println("TestProductDB is NOT READY.");
 			}
 		}
-		//野菜、果物、肉等
+
 		if (dao.count() <= 0) {
 			//dao.create(new ProductBean("test", "テスト", 100, "テスト", "", "", "", ""));
 			

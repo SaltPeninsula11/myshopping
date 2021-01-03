@@ -53,6 +53,9 @@ public class UserBean implements Serializable {
 	}
 	
 	public void logout() {
+		UserDAO dao = UserDAO.getInstance();
+		dao.userUpdate(this.getUserId(), this.getMoney(), this.getPoint());
+		
 		this.isAuth = false;
 		this.userId = null;
 		this.pass = null;

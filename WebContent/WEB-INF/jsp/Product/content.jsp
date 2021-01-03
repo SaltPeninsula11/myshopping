@@ -5,7 +5,8 @@
 
 <%
 String[] information = new String[8];
-information = product.getInformation(((Integer)(request.getAttribute("productId"))).intValue());
+int productId = ((Integer)(request.getAttribute("productId"))).intValue();
+information = product.getInformation(productId);
 %>
 
 <table border="1">
@@ -16,14 +17,14 @@ information = product.getInformation(((Integer)(request.getAttribute("productId"
 			width="125" height="165" alt="<%= information[1] %>">
 		</td>
 		<td>
-			<table border="1">
+			<table>
 			<tr>
 			<!-- タグ -->
 			<% for (int i = 3; i <= 7; i++){ %>
 				<% if (information[i] != ""){ %>
 				<td>
 					<form action="search">
-						<input type="submit" name="tag" value="<%= information[i] %>">
+						<input type="submit" class="btn btn-default" name="tag" value="<%= information[i] %>">
 						<input type="hidden" name="page" value="1">
 					</form>
 				</td>
@@ -44,6 +45,7 @@ information = product.getInformation(((Integer)(request.getAttribute("productId"
 			<!-- 価格 × 個数 -->
 			<h4>
 			<%= information[2] %>円
+			<% if (user.isAuth()){ %>
 			 × 
 			<select name="count">
 			<option value="1">1</option>
@@ -57,12 +59,18 @@ information = product.getInformation(((Integer)(request.getAttribute("productId"
 			<option value="9">9</option>
 			<option value="10">10</option>
 			</select>個
+			<% } %>
 			</h4>
 		</td>
 	</tr>
+	<% if (user.isAuth()){ %>
 	<tr>
 		<td>
-			<input type="button" value="カートに入れる">
+			<form action="user" method="post">
+				<input type="hidden" name="cart" value="<%= productId %>">
+				<input type="submit" value="カートに入れる">
+			</form>
 		</td>
 	</tr>
+	<% } %>
 </table>

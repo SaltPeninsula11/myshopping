@@ -57,13 +57,13 @@
 							<%
 							switch(i){
 								case 0: %>
-									<input type="submit" name="tag" value="野菜">
+									<input type="submit" class="btn btn-default" name="tag" value="野菜">
 									<% break;
 								case 1: %>
-									<input type="submit" name="tag" value="果物">
+									<input type="submit" class="btn btn-default" name="tag" value="果物">
 									<% break;
 								case 2: %>
-									<input type="submit" name="tag" value="キノコ">
+									<input type="submit" class="btn btn-default" name="tag" value="キノコ">
 									<% break;
 							}
 							%>

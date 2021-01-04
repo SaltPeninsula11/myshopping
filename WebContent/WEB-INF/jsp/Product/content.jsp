@@ -40,6 +40,7 @@ information = product.getInformation(productId);
 			<h2><%= information[1] %></h2>
 		</td>
 	</tr>
+	<form action="user">
 	<tr>
 		<td>
 			<!-- 価格 × 個数 -->
@@ -66,11 +67,10 @@ information = product.getInformation(productId);
 	<% if (user.isAuth()){ %>
 	<tr>
 		<td>
-			<form action="user" method="post">
-				<input type="hidden" name="cart" value="<%= productId %>">
-				<input type="submit" value="カートに入れる">
-			</form>
+			<input type="hidden" name="cart" value="<%= productId %>">
+			<input type="submit" value="カートに入れる">
 		</td>
 	</tr>
 	<% } %>
+	</form>
 </table>

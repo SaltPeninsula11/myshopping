@@ -7,7 +7,7 @@
 		<th>
 			<h4>残高</h4>
 		</th>
-		<td>
+		<td class="r-align">
 			<h4>${ user.getMoneyWithComma() } 円</h4>
 		</td>
 	</tr>
@@ -15,7 +15,7 @@
 		<th>
 			<h4>ポイント</h4>
 		</th>
-		<td>
+		<td class="r-align">
 			<h4>${ user.getPointWithComma() } pts</h4>
 		</td>
 	</tr>

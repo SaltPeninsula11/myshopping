@@ -31,7 +31,11 @@ public class UserServlet extends HttpServlet {
 			req.setAttribute("userId", userId);
 			
 			ContentBean content = (ContentBean)req.getAttribute("content");
-			content.setContent("/WEB-INF/jsp/User/content.jsp");
+			if (req.getParameter("cart") != null) {
+				content.setContent("/WEB-INF/jsp/User/cart.jsp");
+			} else {
+				content.setContent("/WEB-INF/jsp/User/content.jsp");
+			}
 			req.setAttribute("content", content);
 			
 			this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);

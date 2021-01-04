@@ -13,3 +13,11 @@
 .product_item .p-item {
 	width: 80px;
 }
+
+.r-align {
+	text-align: right;
+}
+
+a {
+	color: black;
+}

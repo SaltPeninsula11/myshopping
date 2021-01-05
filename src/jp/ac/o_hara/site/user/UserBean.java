@@ -8,6 +8,8 @@ public class UserBean implements Serializable {
 	private String pass = null;
 	private int money;
 	private int point;
+	private int[] cart = new int[30];
+	private int[][] cartMemory;
 	private boolean isAuth = false;
 	
 	public UserBean() {}
@@ -36,6 +38,21 @@ public class UserBean implements Serializable {
 	public int getPoint() { return this.point; }
 	public String getPointWithComma() { return String.format("%,d", this.point); }
 	
+	//カート
+	public void addCart(int productNo, int count) {
+		this.cart[productNo] += count;
+	}
+	public int getCartCount(int productNo) {
+		return this.cart[productNo];
+	}
+	public int getTotalCart() {
+		int total = 0;
+		for (int count: this.cart) {
+			total += count;
+		}
+		return total;
+	}
+	
 	public boolean isAuth() { return this.isAuth; }
 	
 	public boolean login(String id, String pass) {
@@ -53,6 +70,9 @@ public class UserBean implements Serializable {
 	}
 	
 	public void logout() {
+		for (int i = 0; i < cart.length; i++) {
+			cart[i] = 0;
+		}
 		UserDAO dao = UserDAO.getInstance();
 		dao.userUpdate(this.getUserId(), this.getMoney(), this.getPoint());
 		

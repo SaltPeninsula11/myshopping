@@ -40,7 +40,7 @@ information = product.getInformation(productId);
 			<h2><%= information[1] %></h2>
 		</td>
 	</tr>
-	<form action="user">
+	<form action="./user">
 	<tr>
 		<td>
 			<!-- 価格 × 個数 -->

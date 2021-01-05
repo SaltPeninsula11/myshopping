@@ -23,6 +23,16 @@ public class UserServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=UTF-8");
 		
+		HttpSession session = req.getSession();
+		UserBean user = (UserBean) session.getAttribute("user");
+		int count = 0;
+		int productNo = 0;
+		
+		if (req.getParameter("count") != null && req.getParameter("cart") != null) {
+			count = Integer.parseInt(req.getParameter("count"));
+			productNo = Integer.parseInt(req.getParameter("cart"));
+		}
+		
 		if (req.getParameter("register") != null) { // 新規登録画面へ遷移
 			req.getRequestDispatcher("WEB-INF/jsp/User/register.jsp").forward(req, resp);
 		} else {
@@ -32,6 +42,9 @@ public class UserServlet extends HttpServlet {
 			
 			ContentBean content = (ContentBean)req.getAttribute("content");
 			if (req.getParameter("cart") != null) {
+				//カートに入れました
+				System.out.println("商品No." + productNo + "を" + count + "個カートに入れました");
+				user.addCart(productNo, count);
 				content.setContent("/WEB-INF/jsp/User/cart.jsp");
 			} else {
 				content.setContent("/WEB-INF/jsp/User/content.jsp");

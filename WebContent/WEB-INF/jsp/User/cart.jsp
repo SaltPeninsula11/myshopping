@@ -8,11 +8,12 @@ int productId = Integer.parseInt(request.getParameter("cart"));
 information = product.getInformation(productId);
 %>
 
-<form action="user">
+<form action="./user">
 	<table>
 		<tr>
 			<td>
 				<h3>カートに入れました。</h3>
+				<input type="hidden" name="userId" value="hoge">
 			</td>
 		</tr>
 		<tr>
@@ -22,7 +23,7 @@ information = product.getInformation(productId);
 		</tr>
 		<tr>
 			<td>
-				<input type="submit" value="ユーザー画面へ推移">
+				<input type="submit" value="ユーザー画面へ移動">
 			</td>
 		</tr>
 		<tr>

@@ -87,6 +87,32 @@ public class UserDAO extends SimpleDAO {
 
 		return result;
 	}
+	
+	public String getRealName(String userId) {
+		Connection db = this.createConnection();
+		PreparedStatement ps = null;
+		String result = "";
+		try {
+			ps = db.prepareStatement("SELECT realName FROM usertbl WHERE userID=?");
+			ps.setString(1, userId);
+			ResultSet rst = ps.executeQuery();
+			if (rst.next()) {
+				result = rst.getString("realName");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+			}
+			this.closeConnection(db);
+		}
+
+		return result;
+	}
 	public int getMoney(String userId) {
 		Connection db = this.createConnection();
 		PreparedStatement ps = null;

@@ -82,6 +82,8 @@ public class UserServlet extends HttpServlet {
 			req.getRequestDispatcher("WEB-INF/jsp/User/register.jsp").forward(req, resp);
 		} else if (req.getParameter("confirm") != null) { // 確認画面から遷移
 			req.getRequestDispatcher("WEB-INF/jsp/home.jsp").forward(req, resp);
+		} else if (req.getParameter("succeed") != null) { //購入に成功しました
+			req.getRequestDispatcher("WEB-INF/jsp/User/succeed.jsp").forward(req, resp);
 		}
 		//req.getRequestDispatcher("WEB-INF/jsp/index.jsp").forward(req, resp);
 	}

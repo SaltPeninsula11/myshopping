@@ -5,16 +5,18 @@
 <%
 int allProducts = 0;
 String[] information = new String[8];
+
+String userId = request.getParameter("userId");
 %>
 
-<h1>${ user.getRealName() }</h1>
+<h1>${ user.getRealNameDAO(userId) }</h1>
 <table>
 	<tr>
 		<th>
 			<h4>残高</h4>
 		</th>
 		<td class="r-align">
-			<h4>${ user.getMoneyWithComma() } 円</h4>
+			<h4>${ user.getMoneyDAO(userId) } 円</h4>
 		</td>
 	</tr>
 	<tr>
@@ -22,13 +24,13 @@ String[] information = new String[8];
 			<h4>ポイント</h4>
 		</th>
 		<td class="r-align">
-			<h4>${ user.getPointWithComma() } pts</h4>
+			<h4>${ user.getPointDAO(userId) } pts</h4>
 		</td>
 	</tr>
 </table>
 
 <!-- カートの在庫がない場合、非表示する。 -->
-<% if (user.getTotalCart() > 0) { %>
+<% if (user.getTotalCartPlusCheck(userId) > 0) { %>
 <div class="panel panel-info">
 	<div class="panel-heading">
 		<h3 class="panel-title">
@@ -68,6 +70,7 @@ String[] information = new String[8];
 			</div>
 			<% } %>
 		<% } %>
+		</div>
 	</div>
 </div>
 <% } %>

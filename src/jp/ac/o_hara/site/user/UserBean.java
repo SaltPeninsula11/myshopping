@@ -8,8 +8,8 @@ public class UserBean implements Serializable {
 	private String pass = null;
 	private int money;
 	private int point;
+	private String userIdMemory = null;
 	private int[] cart = new int[30];
-	private int[][] cartMemory;
 	private boolean isAuth = false;
 	
 	public UserBean() {}
@@ -26,17 +26,29 @@ public class UserBean implements Serializable {
 	
 	public void setRealName(String name) { this.realName = name; }
 	public String getRealName() { return this.realName; }
+	public String getRealNameDAO(String userId) {
+		UserDAO dao = UserDAO.getInstance();
+		return dao.getRealName(userId);
+	}
 	
 	public void setPass(String pass) { this.pass = pass; }
 	public String getPass() { return this.pass; }
 	
 	public void setMoney(int money) { this.money = money; }
 	public int getMoney() { return this.money; }
-	public String getMoneyWithComma() { return String.format("%,d", this.money); }
+	public String getMoneyDAO(String userId) {
+		UserDAO dao = UserDAO.getInstance();
+		String money = String.format("%,d", dao.getMoney(userId));
+		return money;
+	}
 	
 	public void setPoint(int point) { this.point = point; }
 	public int getPoint() { return this.point; }
-	public String getPointWithComma() { return String.format("%,d", this.point); }
+	public String getPointDAO(String userId) {
+		UserDAO dao = UserDAO.getInstance();
+		String point = String.format("%,d", dao.getPoint(userId));
+		return point;
+	}
 	
 	//カート
 	public void addCart(int productNo, int count) {
@@ -49,6 +61,18 @@ public class UserBean implements Serializable {
 		int total = 0;
 		for (int count: this.cart) {
 			total += count;
+		}
+		return total;
+	}
+	public int getTotalCartPlusCheck(String userId) {
+		int total = 0;
+		System.out.println(userId);
+		System.out.println(this.userIdMemory);
+		
+		if (userId.equals(this.userIdMemory)) {
+			for (int count: this.cart) {
+				total += count;
+			}
 		}
 		return total;
 	}
@@ -65,7 +89,9 @@ public class UserBean implements Serializable {
 			this.setMoney(dao.getMoney(id));
 			this.setPoint(dao.getPoint(id));
 			this.isAuth = true;
+			userIdMemory = this.userId;
 		}
+		
 		return this.isAuth();
 	}
 	
@@ -82,5 +108,7 @@ public class UserBean implements Serializable {
 		this.realName = null;
 		this.money = 0;
 		this.point = 0;
+		
+		userIdMemory = null;
 	}
 }

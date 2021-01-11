@@ -21,7 +21,7 @@ information = product.getInformation(productId);
 			<tr>
 			<!-- タグ -->
 			<% for (int i = 3; i <= 7; i++){ %>
-				<% if (information[i] != ""){ %>
+				<% if (information[i] != "" && information[i] != null){ %>
 				<td>
 					<form action="search">
 						<input type="submit" class="btn btn-default" name="tag" value="<%= information[i] %>">

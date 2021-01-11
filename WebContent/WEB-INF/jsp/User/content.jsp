@@ -31,48 +31,52 @@ String userId = request.getParameter("userId");
 
 <!-- カートの在庫がない場合、非表示する。 -->
 <% if (user.getTotalCartPlusCheck(userId) > 0) { %>
-<div class="panel panel-info">
-	<div class="panel-heading">
-		<h3 class="panel-title">
-		<span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;MY CART
-		<input type="button" value="購入する">
-		</h3>
-	</div>
-	<div class="panel-body">
-		<% allProducts = product.getCount(); %>
-		<div id="product_list">
-		<% for (int i = 0; i < allProducts; i++){ %>
-		<% information = product.getInformation(i); %>
-		<% if (information[0] == null){
-			break;
-		} %>
-			<% if (user.getCartCount(i) > 0){ %>
-			<div class="product_item">
-				<a href="product?productId=<% out.println(i); %>">
-					<table border="1">
-						<tr>
-							<td rowspan="3">
-								<img src="${pageContext.request.contextPath}/images/<%= information[0] %>.png" 
-								width="70" height="92" alt="<%= information[1] %>">
-							</td>
-							<td class="p-item">
-								× <%= user.getCartCount(i) %>
-							</td>
-						</tr>
-						<tr>
-							<td class="p-item"><%= information[1] %></td>
-						</tr>
-						<tr>
-							<td class="p-item"><%= information[2] %>円</td>
-						</tr>
-					</table>
-				</a>
-			</div>
+<form action="./user">
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">
+			<span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;MY CART
+			<input type="hidden" name="buy" value="true">
+			<input type="submit" value="購入する">
+			</h3>
+		</div>
+		<div class="panel-body">
+			<% allProducts = product.getCount(); %>
+			<div id="product_list">
+			<% for (int i = 0; i < allProducts; i++){ %>
+			<% information = product.getInformation(i); %>
+			<% if (information[0] == null){
+				break;
+			} %>
+				<% if (user.getCartCount(i) > 0){ %>
+				<div class="product_item">
+					<a href="product?productId=<% out.println(i); %>">
+						<table border="1">
+							<tr>
+								<td rowspan="3">
+									<img src="${pageContext.request.contextPath}/images/<%= information[0] %>.png" 
+									width="70" height="92" alt="<%= information[1] %>">
+								</td>
+								<td class="p-item">
+									<input type="hidden" name="<%= i %>" value="<%= user.getCartCount(i) %>">
+									× <%= user.getCartCount(i) %>
+								</td>
+							</tr>
+							<tr>
+								<td class="p-item"><%= information[1] %></td>
+							</tr>
+							<tr>
+								<td class="p-item"><%= information[2] %>円</td>
+							</tr>
+						</table>
+					</a>
+				</div>
+				<% } %>
 			<% } %>
-		<% } %>
+			</div>
 		</div>
 	</div>
-</div>
+</form>
 <% } %>
 
 <!-- <div class="panel panel-info">

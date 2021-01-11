@@ -46,6 +46,8 @@ public class UserServlet extends HttpServlet {
 				System.out.println("商品No." + productNo + "を" + count + "個カートに入れました");
 				user.addCart(productNo, count);
 				content.setContent("/WEB-INF/jsp/User/cart.jsp");
+			} else if (req.getParameter("buy") != null) { //購入確認画面
+				content.setContent("/WEB-INF/jsp/User/buy.jsp");
 			} else {
 				content.setContent("/WEB-INF/jsp/User/content.jsp");
 			}

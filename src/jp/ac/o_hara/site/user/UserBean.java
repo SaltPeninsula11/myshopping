@@ -66,8 +66,6 @@ public class UserBean implements Serializable {
 	}
 	public int getTotalCartPlusCheck(String userId) {
 		int total = 0;
-		System.out.println(userId);
-		System.out.println(this.userIdMemory);
 		
 		if (userId.equals(this.userIdMemory)) {
 			for (int count: this.cart) {
